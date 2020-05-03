@@ -1,26 +1,18 @@
+// App
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import firebase from './dev/firebaseapp';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import Router from './router';
+import GlobalStyle from './common/global_style';
+import Client from './client';
+
+Client.initialize(firebase);
+
+const App = () => (
+	<div className="testapp">
+		<Router />
+		<GlobalStyle />
+	</div>
+);
 
 export default App;
