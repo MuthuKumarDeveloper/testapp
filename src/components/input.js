@@ -50,6 +50,7 @@ export default class Input extends Component {
 		this.state = {
 			value: props.value,
 		};
+		this._refInput = null;
 	}
 
 	static get propTypes() {
@@ -105,6 +106,12 @@ export default class Input extends Component {
 			|| size !== nextProps.size);
 	}
 
+	focus() {
+		if (this._refInput) {
+			this._refInput.focus();
+		}
+	}
+
 	_onChange = (ev) => {
 		const { onChange } = this.props;
 
@@ -134,6 +141,7 @@ export default class Input extends Component {
 		return (
 			<Wrapper>
 				<InputComp
+					ref={(ref) => { this._refInput = ref; }}
 					placeholder={placeholder}
 					name={name}
 					type={type}

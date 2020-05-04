@@ -260,6 +260,15 @@ export default class PanelRegistration extends Component {
                 { value: 'WB', label: 'West Bengal' },
             ]
         };
+
+        this._refs = {
+			code1: null,
+			code2: null,
+            code3: null,
+            code4: null,
+            code5: null,
+            code6: null,
+		};
     }
 
     static get propTypes() {
@@ -305,6 +314,14 @@ export default class PanelRegistration extends Component {
         };
     }
 
+    _setFocus(name) {
+		setTimeout(() => {
+			if (this._refs[name]) {
+				this._refs[name].focus();
+			}
+		}, 300);
+	}
+
     /* Handler Function */
     _onClickGender(activeState) {
         this.setState({ activeState });
@@ -331,6 +348,22 @@ export default class PanelRegistration extends Component {
 
     _onChangeCode(name, value) {
         this.setState({ [name]: value });
+        
+        this._onFocus(name, value);
+    }
+
+    _onFocus(name, value) {
+        if (name === 'code1' && value !== '' ) {
+            this._setFocus('code2');
+        } else if (name === 'code2' && value !== '') {
+            this._setFocus('code3');
+        } else if (name === 'code3' && value !== '') {
+            this._setFocus('code4');
+        } else if (name === 'code4' && value !== '') {
+            this._setFocus('code5');
+        } else if (name === 'code5' && value !== '') {
+            this._setFocus('code6');
+        }
     }
 
     _onNextVerification = () => {
@@ -664,6 +697,7 @@ export default class PanelRegistration extends Component {
                             <Input
                                 size="small"
                                 name="code1"
+                                ref={(ref) => { this._refs.code1 = ref; }}
                                 maxLength={1}
                                 type="text"
                                 onChange={this._onChangeCode.bind(this, 'code1')}
@@ -671,13 +705,15 @@ export default class PanelRegistration extends Component {
                             <Input
                                 size="small"
                                 name="code2"
+                                ref={(ref) => { this._refs.code2 = ref; }}
                                 maxLength={1}
                                 type="text"
                                 onChange={this._onChangeCode.bind(this, 'code2')}
                             />
                             <Input
                                 size="small"
-                                name="code33"
+                                name="code3"
+                                ref={(ref) => { this._refs.code3 = ref; }}
                                 maxLength={1}
                                 type="text"
                                 onChange={this._onChangeCode.bind(this, 'code3')}
@@ -685,6 +721,7 @@ export default class PanelRegistration extends Component {
                             <Input
                                 size="small"
                                 name="code4"
+                                ref={(ref) => { this._refs.code4 = ref; }}
                                 maxLength={1}
                                 type="text3"
                                 onChange={this._onChangeCode.bind(this, 'code4')}
@@ -692,6 +729,7 @@ export default class PanelRegistration extends Component {
                             <Input
                                 size="small"
                                 name="code5"
+                                ref={(ref) => { this._refs.code5 = ref; }}
                                 maxLength={1}
                                 type="text"
                                 onChange={this._onChangeCode.bind(this, 'code5')}
@@ -699,6 +737,7 @@ export default class PanelRegistration extends Component {
                             <Input
                                 size="small"
                                 name="code6"
+                                ref={(ref) => { this._refs.code6 = ref; }}
                                 maxLength={1}
                                 type="text"
                                 onChange={this._onChangeCode.bind(this, 'code6')}
