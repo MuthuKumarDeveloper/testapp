@@ -39,6 +39,9 @@ export default class PageDashboard extends PageBase {
 			.then((res) => {
 				if (res) {
 					this._data.user = res;
+					localStorage.setItem('userInfo', JSON.stringify(res));
+					localStorage.setItem('termsAndCondition', 'N');
+
 					this.setState({ dataDate: new Date() });
 				}
 			}).catch((err) => {
@@ -81,15 +84,25 @@ export default class PageDashboard extends PageBase {
 	}
 
 	_onMenuItem = (identifier) => {
+		const user = JSON.parse(localStorage.getItem('userInfo'));
+		const isChecked = localStorage.getItem('termsAndCondition') || 'N';
+
+		const {
+			name, country, phone,
+			company, email, job, experiance
+		} = user;
+
 		if (identifier === 'personalDetails') {
 			this.setState({ activeMenu: identifier, step: 1 });
 		}
 
-		if (identifier === 'companyDetails') {
+		if (identifier === 'companyDetails'
+			&& name !== '' && country !== '' && phone !== '') {
 			this.setState({ activeMenu: identifier, step: 2 });
 		}
 
-		if (identifier === 'emailVerification') {
+		if (identifier === 'emailVerification' && experiance !== ''
+			&& company !== '' && email !== '' && job !== '' && isChecked === 'Y') {
 			this.setState({ activeMenu: identifier, step: 3 });
 		}
 	}

@@ -69,6 +69,7 @@ export default class PhoneInputComponent extends Component {
             value: PropTypes.string,
             isDisabled: PropTypes.bool,
             isError: PropTypes.bool,
+            country: PropTypes.string,
             onChange: PropTypes.func,
         };
     }
@@ -78,21 +79,24 @@ export default class PhoneInputComponent extends Component {
             value: '',
             isDisabled: false,
             isError: false,
+            country: '',
             onChange: null,
         };
     }
 
     shouldComponentUpdate(nextProps, _nextState) {
         const {
-            isDisabled, value, isError,
+            isDisabled, value, isError, country,
         } = this.props;
 
         return (value !== nextProps.value
             || isDisabled !== nextProps.isDisabled
             || isError !== nextProps.isError
+            || country !== nextProps.country
         );
     }
 
+    /* Handler Function */
     _onChange = (value) => {
         const { onChange } = this.props;
 
@@ -103,7 +107,7 @@ export default class PhoneInputComponent extends Component {
 
     // Main Render
     render() {
-        const { value, isError, isDisabled } = this.props;
+        const { value, isError, isDisabled, country } = this.props;
 
         const WrapperComp = isError ? WrapperCompError : (isDisabled ? WrapperDisabled : Wrapper);
 
@@ -116,7 +120,7 @@ export default class PhoneInputComponent extends Component {
                         autoFocus: true
                     }}
                     disabled={isDisabled}
-                    country={'in'}
+                    country={country}
                     value={value}
                     onChange={this._onChange}
                 />

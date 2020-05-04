@@ -37,7 +37,8 @@ const TextInputDisabled = styled(TextInput)`
 
 const InputSmall = styled(TextInput)`
     height: 40px;
-    width: 40px;
+	width: 40px;
+	font-weight: 600;
     padding-left: 0;
     text-align: center;
 `;

@@ -29,11 +29,9 @@ const SelectCompNormal = styled(Select)`
 		font-size: 14px;
 		font-weight: 400;
 		padding-bottom: 5px;
-		padding-left: 10px;
 	}
 
 	.css-1b6odlt, .css-lrg2au-singleValue {
-		padding-left: 10px;
 		font-size: 14px;
 		font-weight: 400;
 		color: #101F3B;

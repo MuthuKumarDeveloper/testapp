@@ -6,6 +6,7 @@ import styled from 'styled-components';
 const Wrapper = styled.div`
 	width: 100%;
 	height: 100%;
+	outline: 0;
 `;
 
 /* Primary Button */
@@ -23,9 +24,13 @@ const ButtonPrimary = styled.button`
 	}
 `;
 
-const ButtonProfile = styled(ButtonPrimary)`
+const ButtonSmall = styled(ButtonPrimary)`
     height: 35px;
-    background-color: #f5f6f8;
+	background-color: #f5f6f8;
+	
+	&:hover {
+		background-color: #f0f0f0;
+	}
 `;
 
 const ButtonPrimaryDisabled = styled(ButtonPrimary)`
@@ -109,7 +114,7 @@ export default class Button extends Component {
 		} = this.props;
 
 		const ButtonComp = disabled ? ButtonPrimaryDisabled
-			: (size === 'full' ? ButtonFull : (size === 'small' ? ButtonProfile : ButtonPrimary));
+			: (size === 'full' ? ButtonFull : (size === 'small' ? ButtonSmall : ButtonPrimary));
 		const LabelComp = disabled ? LabelPrimaryDisabled : (size === 'small' ? LabelSmall : LabelPrimary);
 
 		return (

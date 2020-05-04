@@ -312,18 +312,21 @@ export default class PanelRegistration extends Component {
 
     _onChangeInput(name, value) {
         this.state.user[name] = value; // eslint-disable-line
+        localStorage.setItem('userInfo', JSON.stringify(this.state.user));
 
         this.setState({ dataDate: new Date() });
     }
 
     _onChangeSelect(name, opt) {
         this.state.user[name] = opt ? opt.value : ''; // eslint-disable-line
+        localStorage.setItem('userInfo', JSON.stringify(this.state.user));
 
         this.setState({ dataDate: new Date() });
     }
 
     _onChangeCheckbox(isChecked) {
         this.setState({ isChecked: isChecked });
+        localStorage.setItem('termsAndCondition', isChecked ? 'Y' : 'N');
     }
 
     _onChangeCode(name, value) {
@@ -532,6 +535,7 @@ export default class PanelRegistration extends Component {
                     <RowLabel>Phone</RowLabel>
                     <PhoneInput
                         value={phone}
+                        country={country.toLowerCase()}
                         isError={isErrPhone}
                         onChange={this._onChangeInput.bind(this, 'phone')}
                     />
@@ -660,42 +664,42 @@ export default class PanelRegistration extends Component {
                             <Input
                                 size="small"
                                 name="code1"
-                                maxLength={20}
+                                maxLength={1}
                                 type="text"
                                 onChange={this._onChangeCode.bind(this, 'code1')}
                             />
                             <Input
                                 size="small"
                                 name="code2"
-                                maxLength={20}
+                                maxLength={1}
                                 type="text"
                                 onChange={this._onChangeCode.bind(this, 'code2')}
                             />
                             <Input
                                 size="small"
                                 name="code33"
-                                maxLength={20}
+                                maxLength={1}
                                 type="text"
                                 onChange={this._onChangeCode.bind(this, 'code3')}
                             />
                             <Input
                                 size="small"
                                 name="code4"
-                                maxLength={20}
+                                maxLength={1}
                                 type="text3"
                                 onChange={this._onChangeCode.bind(this, 'code4')}
                             />
                             <Input
                                 size="small"
                                 name="code5"
-                                maxLength={20}
+                                maxLength={1}
                                 type="text"
                                 onChange={this._onChangeCode.bind(this, 'code5')}
                             />
                             <Input
                                 size="small"
                                 name="code6"
-                                maxLength={20}
+                                maxLength={1}
                                 type="text"
                                 onChange={this._onChangeCode.bind(this, 'code6')}
                             />
